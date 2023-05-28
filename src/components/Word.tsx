@@ -1,14 +1,14 @@
 import { Box, HStack, Heading, Spinner, Stack, Text, VStack } from "native-base";
 import { useContext, useState } from "react";
 import nextId from "react-id-generator";
-import { IWordContext, WordContext } from "../data/contexts/WordContext";
+import { IWordContext, WordContext, useWord } from "../data/contexts/WordContext";
 
 interface IWordProps {
     flexGrow: number
 }
 
 export default function Word({ flexGrow }: IWordProps) {
-    const { word, loading, letters } = useContext(WordContext) as IWordContext;
+    const { word, loading, letters } = useWord()
     return (
         <>
             <HStack flexGrow={flexGrow} mx={4} my={3} justifyContent={"center"} space={2} flexWrap={"wrap"}>

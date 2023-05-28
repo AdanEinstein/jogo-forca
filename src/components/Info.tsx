@@ -1,14 +1,14 @@
 import { Box, Button, FavouriteIcon, HStack, Heading, Text, VStack } from "native-base";
 import { useContext, useState } from "react";
 import nextId from "react-id-generator";
-import { IWordContext, WordContext } from "../data/contexts/WordContext";
+import { IWordContext, WordContext, useWord } from "../data/contexts/WordContext";
 
 interface IInfoProps {
     flexGrow?: number
 }
 
 export default function Info({flexGrow}: IInfoProps) {
-    const { refresh, setRefresh, chances } = useContext(WordContext) as IWordContext
+    const { refresh, setRefresh, chances } = useWord()
 
     function renderChances(chances: number) {
         const c = []
@@ -18,6 +18,10 @@ export default function Info({flexGrow}: IInfoProps) {
             )
         }
         return c
+    }
+
+    if(!setRefresh){
+        return null;
     }
 
     return (

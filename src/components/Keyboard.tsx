@@ -1,14 +1,18 @@
 import { Button, HStack, VStack } from "native-base";
 import { useContext } from "react";
-import { IWordContext, WordContext } from "../data/contexts/WordContext";
+import { IWordContext, WordContext, useWord } from "../data/contexts/WordContext";
 
 
 export default function Keyboard() {
-    const { loseChance, word, letters, setLetters, chances } = useContext(WordContext) as IWordContext
+    const { loseChance, word, letters, setLetters, chances } = useWord()
     const letras = [[...'ABCDEFG'.split('')],
     [...'HIJKLMN'.split('')],
     [...'OPQRSTU'.split('')],
     [...'VWXYZ'.split('')]]
+
+    if (!setLetters){
+        return null;
+    }
     return (
         <VStack>
             {letras.map((g, i) => {
